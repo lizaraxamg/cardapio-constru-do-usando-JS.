@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+</head>
+<body>
+    <script>
+        // criar lista de pedidos
+        const pedidos = [];
+
+        pedidos.push({
+            id: 1,
+            cliente: "João Silva",
+            itens: ["Hamburguer", "batata frita"],
+            precoFinal: 25.00
+        }); // <- CORREÇÃO: Ponto e vírgula aqui. O ) extra foi removido.
+
+        pedidos.push({
+            id: 2,
+            cliente: "Maria",
+            itens: ["Pizza", "Refrigerante"],
+            precoFinal: 40.00
+        }); // <- CORREÇÃO: Ponto e vírgula aqui. O ); extra foi removido.
+
+        // exibir nome dos clientes (MAP)
+        const nomesClientes = pedidos.map(pedido => pedido.cliente);
+        console.log("--- Nomes dos Clientes (MAP) ---");
+        console.log(nomesClientes);
+
+        // filtrar pedidos com preço maior que 30.00 (FILTER)
+        const filterPedidos = pedidos.filter(pedido => pedido.precoFinal > 30.00); 
+        // CORREÇÃO: O parâmetro foi renomeado para 'pedido' (singular) para clareza
+        // CORREÇÃO: 'pedicos.precTotal' foi corrigido para 'pedido.precoFinal'
+
+        console.log("--- Pedidos com Preço > R$30 (FILTER) ---");
+        console.log(filterPedidos);
+
+        // atualizar produtos de um pedidos (Modificação por Referência)
+        pedidos[0].itens.push("sobremesa");
+        pedidos[0].precoFinal += 10.00; // CORREÇÃO: 'precofinal' -> 'precoFinal'
+        console.log("--- Pedido Atualizado (Referência) ---");
+        console.log(pedidos[0]);
+
+        // criar a cópia de um pedido e modificar (Cópia por Valor)
+        const pedidoCopia = {...pedidos[0]};
+        pedidoCopia.precoFinal += 50; // CORREÇÃO: 'precTotal' -> 'precoFinal'
+        console.log("--- Cópia vs. Original ---");
+        console.log("Copia:", pedidoCopia);
+        console.log("Original:", pedidos[0]); // CORREÇÃO: Chaves '{}' trocadas por parênteses '()'
+
+        // calcular o total a arrecadado (REDUCE)
+        const totalArrecadado = pedidos.reduce((total, pedido) => total + pedido.precoFinal, 0)
+        // CORREÇÃO: 'Total' -> 'total' (acumulador)
+        // CORREÇÃO: 'precoTotal' -> 'precoFinal'
+
+        console.log("--- Total Arrecadado (REDUCE) ---");
+        console.log(`Total arrecadado: R$${totalArrecadado.toFixed(2)}`);
+        // CORREÇÃO: 'totalarrecadado' -> 'totalArrecadado' e 'toFixed[2]' -> 'toFixed(2)'
+
+    </script>
+    
+</body>
+</html>
